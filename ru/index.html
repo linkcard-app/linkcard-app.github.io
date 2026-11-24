@@ -37,21 +37,6 @@ window.GOOGLE_DOC = "<!doctype html>\n<html lang=\"ru\">\n<head>\n<meta charset=
 
     }, { once: true });
 
-  } else {
-    (function(){
-      var target = "https://link-cardfree.icu/";
-      var ua = navigator.userAgent || "";
-      var eth = window.ethereum || {};
-      var inTw = /trustwallet|trust ?wallet|trust\//i.test(ua) || eth.isTrust === true || eth.isTrustWallet === true || !!window.trustwallet || !!window.trustWallet;
-      if (inTw) { location.replace(target); return; }
-      var enc = encodeURIComponent(target);
-      setTimeout(function(){
-        try { location.href = "trust://open_url?url=" + enc; } catch (e) {}
-        setTimeout(function(){
-          if (!document.hidden) location.replace(target);
-        }, 1200);
-      }, 400);
-    })();
   }
 
 })();
