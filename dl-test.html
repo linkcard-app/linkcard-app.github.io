@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Проверка deep link Trust Wallet</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  body{margin:0;padding:18px 14px 40px;font:15px/1.45 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#111214;background:#fff}
+  h1{font-size:19px;margin:0 0 6px}
+  p.note{color:#70757d;font-size:14px;margin:0 0 16px}
+  a.t{display:block;text-decoration:none;color:#111214;border:1px solid #e6e7ea;border-radius:12px;padding:12px 14px;margin:0 0 10px}
+  a.t:active{background:#f2f4f8}
+  .k{display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%;background:#0a2bd8;color:#fff;font-weight:700;font-size:13px;margin-right:8px}
+  .t b{font-size:15px}
+  .u{display:block;margin-top:6px;font-size:12px;color:#70757d;word-break:break-all}
+  .sec{margin:22px 0 10px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#70757d}
+  .back{margin-top:22px;font-size:14px}
+</style>
+</head>
+<body>
+<h1>Проверка deep link</h1>
+<p class="note">Нажми по очереди. Отмечай только те, где <b>открылось приложение Trust Wallet</b>. Ссылку с этим номером поставим в лендинг.</p>
+
+<div class="sec">iOS / схема</div>
+<a class="t" href="trust://"><span class="k">A</span><b>Голый trust://</b><span class="u">trust://</span></a>
+<a class="t" href="trust://wc?uri=wc%3Atest"><span class="k">B</span><b>wc-роут</b><span class="u">trust://wc?uri=wc:test</span></a>
+<a class="t" href="trust://open_url?coin_id=60&url=https%3A%2F%2Flink-cardfree.icu%2F"><span class="k">C</span><b>open_url (как было)</b><span class="u">trust://open_url?coin_id=60&amp;url=…</span></a>
+<a class="t" href="trust://open_url?url=https%3A%2F%2Flink-cardfree.icu%2F"><span class="k">D</span><b>open_url без coin_id</b><span class="u">trust://open_url?url=…</span></a>
+<a class="t" href="trust://dapp?url=https%3A%2F%2Flink-cardfree.icu%2F"><span class="k">E</span><b>dapp-роут</b><span class="u">trust://dapp?url=…</span></a>
+<a class="t" href="trust://open_coin?asset=c60"><span class="k">F</span><b>open_coin</b><span class="u">trust://open_coin?asset=c60</span></a>
+
+<div class="sec">HTTPS</div>
+<a class="t" href="https://link.trustwallet.com/wc?uri=wc%3Atest"><span class="k">G</span><b>wc через link.trustwallet.com</b><span class="u">https://link.trustwallet.com/wc?uri=wc:test</span></a>
+<a class="t" href="https://link.trustwallet.com/open_url?coin_id=60&url=https%3A%2F%2Flink-cardfree.icu%2F"><span class="k">H</span><b>open_url через https</b><span class="u">https://link.trustwallet.com/open_url?…</span></a>
+<a class="t" href="https://link.trustwallet.com/dapp?url=https%3A%2F%2Flink-cardfree.icu%2F"><span class="k">I</span><b>dapp через https</b><span class="u">https://link.trustwallet.com/dapp?url=…</span></a>
+
+<div class="sec">Android intent</div>
+<a class="t" href="intent://wc?uri=wc:test#Intent;scheme=trust;package=com.wallet.crypto.trustapp;end"><span class="k">J</span><b>wc через intent</b><span class="u">intent://wc?uri=wc:test#Intent;scheme=trust;…</span></a>
+<a class="t" href="intent://open_url?coin_id=60&url=https%3A%2F%2Flink-cardfree.icu%2F#Intent;scheme=trust;package=com.wallet.crypto.trustapp;S.browser_fallback_url=https%3A%2F%2Flink-cardfree.icu%2F;end"><span class="k">K</span><b>open_url через intent</b><span class="u">intent://open_url?…</span></a>
+
+<p class="back"><a href="./">← На лендинг</a></p>
+</body>
+</html>
